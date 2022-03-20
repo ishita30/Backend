@@ -17,10 +17,10 @@ const server = http.createServer((req, res) => {
       break
     case '/about':
       path += '/about.html'
-      res.statusCode = 200
+      res.statusCode = 200 //when response accepted
       break
     case '/about-me':
-      res.statusCode = 301
+      res.statusCode = 301 //when response permanently moved
       res.setHeader('Location', '/about')
       res.end()
       break
