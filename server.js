@@ -13,6 +13,12 @@ const server = http.createServer((req, res) => {
   //   res.write('<h2>How you doin</h2>')
 
   //   res.end()
+  let greet = _.once(() => {
+    console.log('hello')
+  })
+  greet()
+  greet()
+
   let path = './views'
   switch (req.url) {
     case '/':
