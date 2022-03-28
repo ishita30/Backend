@@ -9,7 +9,7 @@ app.get('/about', function (req, res) {
   res.send('<h1>About page</h1>')
 })
 app.get('/about', function (req, res) {
-  res.sendFile('./views/about.html', { root: _dirname })
+  res.sendFile('./views/about.html', { root: __dirname })
 })
 
 //redirects
@@ -20,5 +20,5 @@ app.get('/about-us', (req, res) => {
 
 //404 page
 app.use((req, res) => {
-  res.sendFile('./views/404.html', { root: _dirname })
+  res.status(404).sendFile('./views/404.html', { root: __dirname })
 })
