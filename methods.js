@@ -14,7 +14,7 @@ app.get('/users', (req, res) => {
 //post->to send data from front end to backend
 app.post('/users', (req, res) => {
   console.log(req.body)
-  users = req.body.Name
+  users = req.body
   res.send({
     message: 'data receive successfully',
     user: req.body,
