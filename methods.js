@@ -10,6 +10,10 @@ app.get('/user', (req, res) => {
 })
 
 //get
+app.get('/user', (req, res) => {
+  console.log(req.query)
+  res.send(users)
+})
 
 //post->to send data from front end to backend
 app.post('/user', (req, res) => {
@@ -35,11 +39,16 @@ app.patch('/user', (req, res) => {
 })
 
 //to delete the data
-app.delete('/user',(req,res)=>
-{
-  users={};
+app.delete('/user', (req, res) => {
+  users = {}
   res.json({
-    message: "data has been deleted";
+    message: 'data has been deleted',
   })
-}
-)
+})
+
+//parameters
+app.get('/user/:username', (req, res) => {
+  console.log(req.params.username)
+  console.log(req.params)
+  res.send('user id received')
+})
