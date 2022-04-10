@@ -18,8 +18,10 @@ let users = [
 
 //mini app
 const userRouter = express.Router()
+const authRouter = express.Router()
 //base route , router to use
 app.use('/user', userRouter)
+app.use('/auth', authRouter)
 
 userRouter
   .route('/')
@@ -29,6 +31,8 @@ userRouter
   .delete(deleteUser)
 
 userRouter.route('/:id').get(getUserById)
+
+authRouter.route('/signup').get(getSignUp).post(postSignUp)
 
 // app.get('/user', (req, res) => {
 //   res.send(users)
@@ -123,4 +127,8 @@ function getUserById(req, res) {
     message: 'req received',
     data: obj,
   })
+}
+
+function getSignUp(req, res) {
+  res.sendFile('')
 }
