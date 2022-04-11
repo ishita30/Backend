@@ -32,7 +32,7 @@ userRouter
 
 userRouter.route('/:id').get(getUserById)
 
-authRouter.route('/signup').get(getSignUp).post(postSignUp)
+authRouter.route('/signup').get(middleware, getSignUp).post(postSignUp)
 
 // app.get('/user', (req, res) => {
 //   res.send(users)
@@ -81,7 +81,10 @@ authRouter.route('/signup').get(getSignUp).post(postSignUp)
 //   console.log(req.params)
 //   res.send('user id received')
 // })
-
+function middleware(req, res, next) {
+  console.log('middleware encountered')
+  next() //it will call the next function i.e.getSignUp
+}
 function getUser(req, res) {
   res.send(users)
 }
@@ -130,6 +133,8 @@ function getUserById(req, res) {
 }
 
 function getSignUp(req, res) {
+  console.log('getSignUp called')
+
   res.sendFile('/public/index.html', { root: __dirname })
 }
 
