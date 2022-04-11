@@ -130,5 +130,14 @@ function getUserById(req, res) {
 }
 
 function getSignUp(req, res) {
-  res.sendFile('')
+  res.sendFile('/public/index.html', { root: __dirname })
+}
+
+function postSignUp(req, res) {
+  let obj = req.body
+  console.log('backend', obj)
+  res.json({
+    message: 'user signed up',
+    data: obj,
+  })
 }
