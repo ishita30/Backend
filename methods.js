@@ -3,7 +3,7 @@ const res = require('express/lib/response')
 const app = express()
 
 //middleware function, post, front->json
-app.use(express.json())
+app.use(express.json()) //global middleware function
 app.listen(3000)
 let users = [
   {
@@ -25,7 +25,7 @@ app.use('/auth', authRouter)
 
 userRouter
   .route('/')
-  .get(getUser)
+  .get(getUser) //path specific middleware
   .post(postUser)
   .patch(updateUser)
   .delete(deleteUser)
