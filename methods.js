@@ -1,6 +1,7 @@
 const express = require('express')
 const res = require('express/lib/response')
 const app = express()
+const mongoose = require('mongoose')
 
 //middleware function, post, front->json
 app.use(express.json()) //global middleware function
@@ -145,4 +146,56 @@ function postSignUp(req, res) {
     message: 'user signed up',
     data: obj,
   })
+}
+
+const db_link =
+  'mongodb+srv://admin:viIyDk7UsajqTM2Z@cluster0.jnbow.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mongoose
+  .connect(db_link)
+
+  .then(function (db) {
+    console.log(db)
+    console.log('db connected')
+  })
+  .catch(function (err) {
+    console.log(err)
+  })
+
+//schema
+const userSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    min: 8,
+  },
+  confirmPassword: {
+    type: String,
+    required: true,
+    min: 8,
+  },
+})
+
+//model
+
+const userModel = mongoose.model('userModel', userSchema) //what name to take of model
+
+async function createUser() {
+  let user = {
+    name: 'Ishita',
+    email: 'abc@gmail.com',
+    password: '12345',
+    confirmPassword: '12345',
+  }
+
+  let data = await userModel.create(user)
+  console.log(data)
 }
