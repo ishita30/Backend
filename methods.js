@@ -186,9 +186,10 @@ const userSchema = mongoose.Schema({
 
 //model
 
-const userModel = mongoose.model('userModel', userSchema) //what name to take of model
+const userModel = mongoose.model('userModel', userSchema)
+//what name to take of model
 
-async function createUser() {
+function createUser() {
   let user = {
     name: 'Ishita',
     email: 'abc@gmail.com',
@@ -196,6 +197,6 @@ async function createUser() {
     confirmPassword: '12345',
   }
 
-  let data = await userModel.create(user)
+  let data = userModel.create(user)
   console.log(data)
 }
